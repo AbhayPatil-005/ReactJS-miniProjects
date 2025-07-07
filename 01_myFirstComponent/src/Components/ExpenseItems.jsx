@@ -2,10 +2,12 @@
 function ExpenseItem() {
   return (
     <>
-    <p>This is expense item!</p>
-    <p>Food - $5</p>
-    <p>Petrol - $20</p>
-    <p>Movie - $10</p>
+    <body>
+      <div>15 August 2023</div>
+        <div>Delhi</div>
+        <div>Book</div>
+        <div>$10</div>
+    </body>
     </>
   )
 }
