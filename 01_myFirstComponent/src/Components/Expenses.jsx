@@ -1,9 +1,10 @@
 import './Expenses.css'
 import ExpenseItems from './ExpenseItems';
+import Card from './Card'
 
 function Expenses(props){
-return (
-    props.expenses.map((expense,index)=>{
+return (<Card className='expenses'>
+    {props.expenses.map((expense,index)=>{
         return (
         <ExpenseItems 
           key={expense.id}
@@ -14,7 +15,8 @@ return (
         ></ExpenseItems>
         )
       }
-    ))
+    )}
+    </Card>)
 }
 
 export default Expenses;
