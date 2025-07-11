@@ -10,7 +10,7 @@ function ExpenseForm(props){
         enteredAmount: "",
         enteredDate: ""
     });
-    console.log(setUserInput)
+
     const titleChangeHandler = (event)=>{
         setUserInput((prevState)=>({
             ...prevState,
@@ -42,21 +42,33 @@ function ExpenseForm(props){
         // enteredTitle:event.target.value});
         // setEnteredDate(event.target.value);
     }
-
+    const formSubmitHandler=(event)=>{
+        event.preventDefault();
+        const enteredData = {
+            title: userInput.enteredTitle,
+            amount: userInput.enteredAmount,
+            date:new Date(userInput.enteredDate),
+        }
+        console.log(enteredData)
+        setUserInput({
+        enteredTitle:(''),
+        enteredAmount:(''),
+        enteredDate:('')})
+    }
 return (
-    <form>
+    <form onSubmit={formSubmitHandler}>
         <div className="new-expense__controls">
             <div className="new-expense__control">
                 <label htmlFor="title">Title</label>
-                <input type="text" id="title" onChange={titleChangeHandler}/>
+                <input type="text" id="title" value={userInput.enteredTitle} onChange={titleChangeHandler}/>
             </div>
             <div className="new-expense__control">
                 <label htmlFor="amount">Amount</label>
-                <input type="number" id="amount" onChange={amountChangeHandler}/>
+                <input type="number" id="amount" value={userInput.enteredAmount} onChange={amountChangeHandler}/>
             </div>
             <div className="new-expense__control">
                 <label htmlFor="date">Date</label>
-                <input type="date" id="date" min="2023-01-01" max="2024-12-31" onChange={dateChangeHandler} />
+                <input type="date" value={userInput.enteredDate} id="date" min="2023-01-01" max="2024-12-31" onChange={dateChangeHandler} />
             </div>
         </div>
         <div className="new-expense__actions">
