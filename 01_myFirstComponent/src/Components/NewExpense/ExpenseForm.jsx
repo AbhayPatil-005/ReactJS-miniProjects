@@ -49,7 +49,7 @@ function ExpenseForm(props){
             amount: userInput.enteredAmount,
             date:new Date(userInput.enteredDate),
         }
-        console.log(enteredData)
+
         setUserInput({
         enteredTitle:(''),
         enteredAmount:(''),
