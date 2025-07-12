@@ -1,5 +1,6 @@
 import Expenses from "./Components/Expenses/Expenses";
 import NewExpense from "./Components/NewExpense/NewExpense";
+import { useState } from "react";
 
 function App() {
   const expenses = [
@@ -15,14 +16,15 @@ function App() {
     { id: "4", date: new Date(2023, 1, 14), 
       title: "Laptop", price: 200, location:"Mumbai"},
   ];
+  const [newExpenseList, setNewExpenseList] = useState([...expenses])
   const expenseDataRecieved=(recievedData)=>{
-    console.log(recievedData);
+    setNewExpenseList((prevList) => [recievedData, ...prevList])
   }
   return (
     <div>
       <h1>Let's get Started</h1>
       <NewExpense onExpenseData={expenseDataRecieved}/>
-      <Expenses expenses={expenses}></Expenses>
+      <Expenses expenses={newExpenseList}></Expenses>
     </div>
   );
 }
