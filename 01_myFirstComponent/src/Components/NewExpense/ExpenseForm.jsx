@@ -49,6 +49,10 @@ function ExpenseForm(props){
             amount: userInput.enteredAmount,
             date:new Date(userInput.enteredDate),
         }
+        const enteredExpenseData ={
+            ...enteredData, id:Math.random().toString()
+        }
+        props.onExpenseSubmit(enteredExpenseData)
 
         setUserInput({
         enteredTitle:(''),
