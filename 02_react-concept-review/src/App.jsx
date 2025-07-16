@@ -1,22 +1,13 @@
-import { useState } from 'react'
-import AddUser from "./components/Users/AddUser.jsx"
-import './index.css'
+
+// import Card from './components/UI/Card'
+import AddUser from './components/Users/AddUser';
 
 function App() {
-  const [data, setData] = useState([])
-  const userDataHandler = (userData) => {
-    setData((prevState) => [userData, ...prevState])
-  }
   return (
     <div>
-      <AddUser onAddUser={userDataHandler} />
-      {data.map((user, index) => <div key={index}>
-                <p>{user.username} ({user.age})years old</p>
-              </div>
-        )
-      }
+      <AddUser />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
