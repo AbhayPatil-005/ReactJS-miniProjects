@@ -4,7 +4,7 @@ import "./AddUser.css";
 import Button from '../UI/Button';
 import { useState } from "react";
 
-const AddUser = () => {
+const AddUser = (props) => {
   const [userEnteredName, setUserName] = useState("");
   const [userEnteredAge, setUserAge] = useState("");
 
@@ -17,7 +17,9 @@ const AddUser = () => {
   const addUserHandler = (event) => {
     event.preventDefault();
     if (userEnteredName.trim()===""||userEnteredAge.trim()==="")return;
-    console.log(userEnteredName,userEnteredAge);
+    // console.log(userEnteredName,userEnteredAge);
+    const userData ={name:userEnteredName,age:userEnteredAge}
+    props.onAddUser(userData)
     setUserName("");
     setUserAge("");
   };
