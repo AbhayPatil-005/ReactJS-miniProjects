@@ -1,5 +1,6 @@
 import { useState, Fragment } from 'react'
 import Header from './Layout/Header'
+import MealsSummmary from './Meals/MealsSummary'
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
   return (
     <Fragment>
     <Header />
+    <MealsSummmary/>
     </Fragment>
   )
 }
