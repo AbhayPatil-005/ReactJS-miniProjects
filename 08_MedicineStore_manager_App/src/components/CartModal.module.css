@@ -1,0 +1,67 @@
+.backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(73, 47, 47, 0.5);
+    z-index: 9998;
+}
+.modal h2{
+    color: rgb(14, 140, 182);
+    background-color: rgb(207, 244, 255);
+    border-radius: 10px;
+    text-align: center;
+    
+}
+
+.modal span{
+    font-weight: bold;
+    color: rgb(97, 97, 247);
+    font-style: italic;
+}
+
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    z-index: 9999;
+    max-width: 700px;
+    width: 90%;
+
+}
+.listItem{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-bottom: 1px solid gray;
+    padding: 10px 0px;
+}
+.listItem div{
+    display: flex;
+    gap: 10px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0px;
+}
+
+.buttonRow {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    
+}
+.placebtn{
+    background-color: rgb(130, 243, 130);
+    margin:0px 20px 0px;
+    border-radius: 10px;
+}
+
+.closebtn{
+    background-color: rgb(251, 114, 114);
+    margin-left: auto;
+    border-radius: 10px;
+}

@@ -1,47 +1,30 @@
+import styles from './CartModal.module.css'
 const CartModal=(props)=>{
     return (
         <>
             <div 
-                className="backdrop"
+                className={styles.backdrop}
                 onClick={props.onClose}
-                style={{
-                    position: "fixed",
-                    top: 0,
-                    left: 0,
-                    width: "100vw",
-                    height: "100vh",
-                    backgroundColor: "rgba(0,0,0,0.5)",
-                    zIndex: 100,
-                }}
                 />
             <div
-                className="modal"
-                style={{
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "white",
-                padding: "2rem",
-                borderRadius: "8px",
-                zIndex: 101,
-                maxWidth: "700px",
-                width: "90%",
-                }}
+                className={styles.modal}
             >
-                <h2>Your Cart</h2>
+                <h2 >Your Cart</h2>
                 {props.cart.length ===0? (<p>Add items to your Cart</p>):(<ul>
                     {props.cart.map((item)=>(
-                    <li key={item.cartId}>
-                        {`Product: ${item.medName} 
-                        -> Description: ${item.description}
-                        -> Price: ₹.${item.price * item.selectedQuantity}/- 
-                        -> Quantity: ${item.selectedQuantity}`}
+                    <li key={item.cartId} className={styles.listItem}>
+                        <div><span>Product: </span><b>{item.medName}</b> </div>
+                        <div><span>Description: </span>{item.description}</div>
+                        <div><span>Price: </span>₹.{item.price * item.selectedQuantity}/-</div>
+                        <div><span>Quantity: </span>{item.selectedQuantity}</div>
                     </li>
                 ))}
                 </ul>)}
-                <button onClick={props.onClose}>Close Cart</button>
-                <button >Place Order!</button>
+                <div className={styles.buttonRow}Z>
+                    <button onClick={props.onClose} className={styles.closebtn}>Close Cart</button>
+                <button className={styles.placebtn}>Place Order!</button>
+                </div>
+                
 
             </div>
                 

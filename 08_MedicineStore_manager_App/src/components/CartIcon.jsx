@@ -4,7 +4,7 @@ import { useContext } from "react";
 const CartIcon=(props)=>{
     const {cart} = useContext(CartContext);
     return(
-        <button onClick={props.onClick}>🛒 Cart [{cart.length}]</button>
+        <button onClick={props.onClick} className={props.className}>🛒 Cart [{cart.length}]</button>
     )
 }
 export default CartIcon;

@@ -1,0 +1,28 @@
+.navBar{
+    background-color: rgb(222, 71, 71);
+    color: white;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.329);
+    position: relative; 
+    z-index: 10;
+
+    display: flex;                
+    align-items: center;          
+    justify-content: space-between; 
+    padding: 0 20px; 
+}
+
+.navBar h1{
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+.navBar .cartIcon{
+    color: rgb(97, 97, 247);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(97, 97, 247)  ;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 100px;
+
+    display: block;
+}

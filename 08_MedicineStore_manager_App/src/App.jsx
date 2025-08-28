@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import AdminForm from './components/AdminForm'
-import NavBar from './components/NavBar'
-import ProductList from './components/ProductList'
+import AdminForm from './components/AdminForm/AdminForm'
+import NavBar from './components/NavBar/NavBar'
+import ProductList from './components/ProductList/ProductList'
 
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
       <NavBar/>
       <AdminForm></AdminForm>
       <ProductList></ProductList>
+      
     </>
   )
 }
