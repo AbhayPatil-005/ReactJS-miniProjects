@@ -11,7 +11,7 @@ const Footer = () => {
       className="bg-info text-white mt-4"
     >
       <Container className="text-start">
-        <p className="mb-0 " style={{ fontFamily: "monospace", fontSize: "30px" }}>
+        <p className="mb-0 " style={{ fontFamily: "monospace", fontSize: "50px" }}>
           The Generics
         </p>
       </Container>
