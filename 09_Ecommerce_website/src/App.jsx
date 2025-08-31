@@ -1,20 +1,17 @@
-import NavBar from "./components/navBar/NavBar";
-import Header from "./components/header/Header";
-import Cards from "./components/cards/Cards";
-import Footer from "./components/footer/Footer";
-import { Cart } from "./components/cart/Cart";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import About from "./components/pages/About";
+import Home from "./components/pages/Home";
+import { Store } from "./components/pages/Store";
+
 
 function App() {
-
-  return (
-    <>
-      <NavBar/>    
-      <Header/>
-      <Cards/>
-      <Cart/>
-      <Footer/>
-    </>
-  )
+  const router =createBrowserRouter([
+    {path: '/about', element: <About/>},
+    {path: '/', element: <Home/> },
+    {path:'/store', element: <Store/>}
+  ])
+  return (<RouterProvider router={router}/>)
 }
 
 export default App;

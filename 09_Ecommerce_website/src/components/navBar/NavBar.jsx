@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import { Container } from "react-bootstrap";    
 import { CartContext } from "../../context/CartContext";
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const {cartOpen, cartList} = useContext(CartContext);
@@ -13,10 +14,22 @@ const NavBar = () => {
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto "/>
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto" >
-                        <Nav.Link href="#home" className="text-white fw-semibold ">Home</Nav.Link>
-                        <Nav.Link href="#home" className="text-white fw-semibold ">Store</Nav.Link>
-                        <Nav.Link href="#home" className="text-white fw-semibold ">About</Nav.Link>
+                    <Nav className="ms-auto gap-3" >
+                        <NavLink to="/" style={({ isActive }) => ({
+                                              textDecoration: "none",
+                                              color: "white",
+                                              fontWeight: isActive ? "bold" : "normal",
+                                            })}><span>Home</span></NavLink>
+                        <NavLink to="/store" style={({ isActive }) => ({
+                                                textDecoration: "none",
+                                                color: "white",
+                                                fontWeight: isActive ? "bold" : "normal",
+                                              })}><span>Store</span></NavLink>
+                        <NavLink to="/about" style={({ isActive }) => ({
+                                                textDecoration: "none",
+                                                color: "white",
+                                                fontWeight: isActive ? "bold" : "normal",
+                                              })}><span>About</span></NavLink>
                     </Nav>
                     <Button variant="light" className="fw-semibold ms-auto" onClick={cartOpen}>Cart ({cartList.length})</Button>
                 </Navbar.Collapse>

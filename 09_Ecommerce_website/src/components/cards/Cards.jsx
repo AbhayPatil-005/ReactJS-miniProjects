@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 const Cards = () => {
-    const {cartList, addItemToCart} = useContext(CartContext)
+    const {cartList, addItemToCart, cartOpen} = useContext(CartContext)
     const productsArr = [
         { 
             title: 'Colors', 
@@ -53,7 +53,7 @@ const Cards = () => {
         ))}
            </Row>
            <div className="text-center mt-3">
-                <Button variant="primary">See Cart</Button>
+                <Button variant="primary" onClick={cartOpen}>See Cart</Button>
             </div>
         </Container>
         

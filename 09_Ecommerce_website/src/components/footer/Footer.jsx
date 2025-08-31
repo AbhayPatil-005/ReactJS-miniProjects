@@ -8,7 +8,7 @@ const Footer = () => {
         display: "flex",             
         alignItems: "center",
       }}
-      className="bg-info text-white mt-4"
+      className="bg-info text-white mt-4 d-flex "
     >
       <Container className="text-start">
         <p className="mb-0 " style={{ fontFamily: "monospace", fontSize: "50px" }}>
