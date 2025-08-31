@@ -5,7 +5,7 @@ import { CartContext } from "../../context/CartContext";
 import { useContext } from "react";
 
 const NavBar = () => {
-  const {isCartOpen,cartOpen} = useContext(CartContext);
+  const {cartOpen, cartList} = useContext(CartContext);
   return (
     <Navbar expand="lg" bg="dark" variant="dark">
         <Container>
@@ -18,8 +18,7 @@ const NavBar = () => {
                         <Nav.Link href="#home" className="text-white fw-semibold ">Store</Nav.Link>
                         <Nav.Link href="#home" className="text-white fw-semibold ">About</Nav.Link>
                     </Nav>
-                    <Button variant="light" className="fw-semibold ms-auto" onClick={cartOpen}>Cart</Button>
-                    {console.log(isCartOpen)}
+                    <Button variant="light" className="fw-semibold ms-auto" onClick={cartOpen}>Cart ({cartList.length})</Button>
                 </Navbar.Collapse>
            
         </Container>

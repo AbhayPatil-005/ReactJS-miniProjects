@@ -1,9 +1,10 @@
 import { CartContext } from "../../context/CartContext";
 import { useContext, useState, useEffect } from "react";
-import { Offcanvas, Container, Row, Col, Button } from "react-bootstrap";
+import { Offcanvas, ListGroup, Button, ListGroupItem } from "react-bootstrap";
 
 export const Cart=()=>{
-    const {cartClose, isCartOpen} = useContext(CartContext);
+    const {cartClose, isCartOpen, 
+        removeItemToCart, cartList} = useContext(CartContext);
  
     const cartElements = [{
                             title: 'Colors',
@@ -25,7 +26,7 @@ export const Cart=()=>{
                             }]
     
     let total = 0;
-    cartElements.forEach((product) => {
+    cartList.forEach((product) => {
                 total += product.price * product.quantity;
                 });
                     
@@ -43,24 +44,33 @@ export const Cart=()=>{
             <Offcanvas.Title >Cart</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-            <Row className="text-center fw-bold">
-                <Col >SL</Col>
-                <Col >Item</Col>
-                <Col>Price</Col>
-                <Col >Quantity</Col>
-                <Col ></Col>
-            </Row>
-            {cartElements.map((product, index)=>(
-            <Row key={index} className="text-center">
-                <Col >{index +1 }.</Col>
-                <Col >{product.title}</Col>
-                <Col >{product.price}</Col>
-                <Col >{product.quantity}</Col>
-                <Col><Button className="btn-danger btn-sm py-1 mb-2" >Remove</Button></Col>
-            </Row>))}
+            <ListGroup variant="flush">
+                {cartList.map((product, index)=>(
+                <ListGroup.Item key={index+1} className="d-flex align-items-center justify-content-between">
+                    <div className="d-flex align-items-center">
+                        <span className="me-2 fw-bold">{index + 1}.</span>
+                        <img 
+                            src={product.imageUrl} 
+                            alt={product.title} 
+                            className="img-fluid rounded me-2" 
+                            style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                            />
+                            <div>
+                                <div className="fw-bold">{product.title}</div>
+                                <div className="text-muted">₹{product.price}</div>
+                            </div>
+                    </div>
+                    
+                <div className="d-flex align-items-center">
+                        <span className="border rounded px-2 py-1 me-3 bg-light">Qty: {product.quantity}</span>
+                        <Button variant="danger" size="sm" onClick={()=>removeItemToCart(product)}>Remove</Button>
+
+                </div>
+                </ListGroup.Item>))}
+            </ListGroup>
         </Offcanvas.Body>
             <div className="d-flex justify-content-between p-3 border-top mt-auto">
-                <div><p><b>Total: </b>₹{total}</p></div>
+                <div><b>Total: </b>₹{total}</div>
                 <Button className="btn-success">Purchase</Button>
             </div>
     </Offcanvas>

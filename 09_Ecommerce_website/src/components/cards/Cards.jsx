@@ -1,27 +1,35 @@
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+
 const Cards = () => {
+    const {cartList, addItemToCart} = useContext(CartContext)
     const productsArr = [
         { 
-        title: 'Colors', 
-        price: 100, 
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+            title: 'Colors', 
+            price: 100, 
+            imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+            id: 1
         },
         {
             title: 'Black and white Colors',
             price: 50,
             imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
+            id: 2
         },
         {
-        title: 'Yellow and Black Colors',
-        price: 70,
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+            title: 'Yellow and Black Colors',
+            price: 70,
+            imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+            id: 3
         },
         {
-        title: 'Blue Color',
-        price: 100,
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
+            title: 'Blue Color',
+            price: 100,
+            imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
+            id: 4
         }]
   return (
     <> 
@@ -37,7 +45,7 @@ const Cards = () => {
                             <Card.Text className="me-auto">
                             ${product.price}
                             </Card.Text>
-                            <Button variant="primary" className="ms-auto">Add to cart</Button>
+                            <Button variant="primary" className="ms-auto" onClick={()=>addItemToCart(product)}>Add to cart</Button>
                         </div>
                     </Card.Body>
                     </Card>
