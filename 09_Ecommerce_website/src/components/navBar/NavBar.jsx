@@ -13,8 +13,8 @@ const NavBar = () => {
             <Navbar.Brand href="#" className="fw-semibold">E-Commerce</Navbar.Brand>
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto "/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto gap-3" >
+                <Navbar.Collapse id="basic-navbar-nav" >
+                    <Nav className="ms-auto gap-3 text-end" >
                         <NavLink to="/" style={({ isActive }) => ({
                                               textDecoration: "none",
                                               color: "white",
@@ -30,8 +30,10 @@ const NavBar = () => {
                                                 color: "white",
                                                 fontWeight: isActive ? "bold" : "normal",
                                               })}><span>About</span></NavLink>
-                    </Nav>
-                    <Button variant="light" className="fw-semibold ms-auto" onClick={cartOpen}>Cart ({cartList.length})</Button>
+                    </Nav >
+                    <div className="ms-auto text-end mt-2 mt-lg-0">
+                    <Button variant="light" className="fw-semibold " onClick={cartOpen}>Cart ({cartList.length})</Button>
+                    </div>
                 </Navbar.Collapse>
            
         </Container>
