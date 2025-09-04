@@ -30,6 +30,11 @@ const NavBar = () => {
                                                 color: "white",
                                                 fontWeight: isActive ? "bold" : "normal",
                                               })}><span>About</span></NavLink>
+                        <NavLink to='/contact-us' style={({ isActive }) => ({
+                                                textDecoration: "none",
+                                                color: "white",
+                                                fontWeight: isActive ? "bold" : "normal",
+                                              })}><span>Contact Us</span></NavLink>
                     </Nav >
                     <div className="ms-auto text-end mt-2 mt-lg-0">
                     <Button variant="light" className="fw-semibold " onClick={cartOpen}>Cart ({cartList.length})</Button>
