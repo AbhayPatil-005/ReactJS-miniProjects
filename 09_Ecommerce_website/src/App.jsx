@@ -1,19 +1,38 @@
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import About from "./components/pages/About";
 import Home from "./components/pages/Home";
 import { ContactUs } from "./components/pages/ContactUs";
 import { Store } from "./components/pages/Store";
+import ProductDetail from "./components/cards/ProductDetail";
 
 
 function App() {
-  const router =createBrowserRouter([
-    {path: '/about', element: <About/>},
-    {path: '/', element: <Home/> },
-    {path:'/store', element: <Store/>},
-    {path:'/contact-us', element: <ContactUs/>}
-  ])
-  return (<RouterProvider router={router}/>)
+    return(
+      <>
+        <Switch>
+          <Route path='/' exact>
+            <Home/>
+          </Route>
+
+          <Route path='/about'>
+              <About/>
+          </Route>
+
+          <Route path='/store' exact>
+            <Store/>
+          </Route>
+
+          <Route path='/contact-us'>
+            <ContactUs/>
+          </Route>
+
+          <Route path='/store/:id'>
+          <ProductDetail/>
+          </Route>
+        </Switch>
+      </>
+    )
 }
 
 export default App;

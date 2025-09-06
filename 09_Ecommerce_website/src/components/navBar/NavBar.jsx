@@ -10,31 +10,26 @@ const NavBar = () => {
   return (
     <Navbar expand="lg" bg="dark" variant="dark">
         <Container>
-            <Navbar.Brand href="#" className="fw-semibold">E-Commerce</Navbar.Brand>
+            <Navbar.Brand as={NavLink} to='/' className="fw-semibold">E-Commerce</Navbar.Brand>
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto "/>
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="ms-auto gap-3 text-end" >
-                        <NavLink to="/" style={({ isActive }) => ({
-                                              textDecoration: "none",
-                                              color: "white",
-                                              fontWeight: isActive ? "bold" : "normal",
-                                            })}><span>Home</span></NavLink>
-                        <NavLink to="/store" style={({ isActive }) => ({
-                                                textDecoration: "none",
-                                                color: "white",
-                                                fontWeight: isActive ? "bold" : "normal",
-                                              })}><span>Store</span></NavLink>
-                        <NavLink to="/about" style={({ isActive }) => ({
-                                                textDecoration: "none",
-                                                color: "white",
-                                                fontWeight: isActive ? "bold" : "normal",
-                                              })}><span>About</span></NavLink>
-                        <NavLink to='/contact-us' style={({ isActive }) => ({
-                                                textDecoration: "none",
-                                                color: "white",
-                                                fontWeight: isActive ? "bold" : "normal",
-                                              })}><span>Contact Us</span></NavLink>
+                        <NavLink to="/" activeClassName="fw-bold " className=" text-white text-decoration-none" exact> 
+                        <span>Home</span>   
+                        </NavLink>
+
+                        <NavLink to="/store" activeClassName="fw-bold" className="text-white text-decoration-none" exact>
+                        <span>Store</span>
+                        </NavLink>
+
+                        <NavLink to="/about" activeClassName="fw-bold" className="text-white text-decoration-none" exact
+                        ><span>About</span>
+                        </NavLink>
+
+                        <NavLink to='/contact-us' activeClassName="fw-bold" className="text-white text-decoration-none" exact>
+                        <span>Contact Us</span>
+                        </NavLink>
                     </Nav >
                     <div className="ms-auto text-end mt-2 mt-lg-0">
                     <Button variant="light" className="fw-semibold " onClick={cartOpen}>Cart ({cartList.length})</Button>

@@ -55,7 +55,7 @@ export const ContactUs=()=>{
                 </Form.Group>
 
                 <Form.Group className="mb-3 " controlId="formEmail">
-                    <Form.Label >Email</Form.Label>
+                    <Form.Label >Email Id</Form.Label>
                     <Form.Control 
                     type="email"
                     placeholder="Enter your email"

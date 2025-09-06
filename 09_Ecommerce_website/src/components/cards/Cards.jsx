@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { NavLink } from "react-router-dom";
 
 const Cards = () => {
     const {cartList, addItemToCart, cartOpen} = useContext(CartContext)
@@ -37,8 +38,11 @@ const Cards = () => {
             <Row className="justify-content-center">
         {productsArr.map((product, index)=>(
             <Col md={6} lg={6} key={index} className="mb-4 d-flex justify-content-center">
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Title>{product.title}</Card.Title>
+                    <Card style={{ width: '18rem', border:'2px solid lightblue', borderRadius:'10px', borderRadius:'15px'}}>
+                        <NavLink to={`/store/${product.id}`} style={{ textDecoration: 'none' }}>
+                        <Card.Title className=" text-black text-center p-2">
+                            {product.title}
+                            </Card.Title>
                         <Card.Img variant="top" src={product.imageUrl} />
                         <Card.Body>
                         <div className="d-flex align-items-center">
@@ -48,6 +52,7 @@ const Cards = () => {
                             <Button variant="primary" className="ms-auto" onClick={()=>addItemToCart(product)}>Add to cart</Button>
                         </div>
                     </Card.Body>
+                    </NavLink>
                     </Card>
             </Col>
         ))}
