@@ -5,12 +5,19 @@ import Home from "./components/pages/Home";
 import { ContactUs } from "./components/pages/ContactUs";
 import { Store } from "./components/pages/Store";
 import ProductDetail from "./components/cards/ProductDetail";
-
+import { Cart } from "./components/cart/Cart";
+import LoginForm from "./components/auth/LoginForm";
 
 function App() {
     return(
       <>
+      
+        <Cart/>
         <Switch>
+          <Route path='/login' exact>
+            <LoginForm/>
+          </Route>
+
           <Route path='/' exact>
             <Home/>
           </Route>
