@@ -3,6 +3,7 @@ import { useRef } from "react";
 import styles from './Login.module.css'
 
 export const Login=()=>{
+    const apiKey =  import.meta.env.VITE_FIREBASE_API_KEY ;
     const [isLogin, setIsLogin] = useState(true);
     const [isLoading, setLoading] =  useState(false);
     const emailRef = useRef();
@@ -22,7 +23,7 @@ export const Login=()=>{
         if (isLogin){
 
         }else{
-            fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBZo67Rv5C_f4qyESDqVW5MCy2zG-ifU-o',{
+            fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,{
                 method:'Post',
                 body:JSON.stringify({
                     email: emailEntered,
