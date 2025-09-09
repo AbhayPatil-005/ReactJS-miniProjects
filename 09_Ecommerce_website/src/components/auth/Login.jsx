@@ -1,70 +1,96 @@
-import { useState } from "react";
-import { useRef } from "react";
-import styles from './Login.module.css'
+import { useState, useContext,useRef } from "react";
+import styles from './Login.module.css';
+import {AuthContext} from '../../context/AuthContext';
 
-export const Login=()=>{
-    const apiKey =  import.meta.env.VITE_FIREBASE_API_KEY ;
-    const [isLogin, setIsLogin] = useState(true);
-    const [isLoading, setLoading] =  useState(false);
-    const emailRef = useRef();
-    const passwordRef = useRef();
+export const Login = () => {
+  const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
 
-    const switchAuthHandler=()=>{
-        setIsLogin((prev)=>!prev);
-    }
+  const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
-    const submitHandler =(event)=>{
-        event.preventDefault();
+  const authCtx = useContext(AuthContext);
+ 
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
-        const emailEntered = emailRef.current.value;
-        const passwordEntered = passwordRef.current.value;
+  const switchAuthHandler = () => {
+    setIsLogin((prev) => !prev);
+  };
 
-        setLoading(true)
-        if (isLogin){
+  const submitHandler = (event) => {
+    event.preventDefault();
 
-        }else{
-            fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,{
-                method:'Post',
-                body:JSON.stringify({
-                    email: emailEntered,
-                    password: passwordEntered,
-                    returnSecureToken:true,                
-                }),
-                headers:{
-                    'Content-Type':'application/json'
-                }
-            }).then(res=>{
-                setLoading(false)
-                if(res.ok){
-                    //...
-                }else{
-                    return res.json().then((data)=>{
-                        let errorMessage = 'Authentication failed';
-                        console.log(data)
-                        if (data && data.error && data.error.message){
-                            errorMessage=data.error.message;
-                        }
-                        alert(errorMessage);
-                    });
-                }
-            });
+    const emailEntered = emailRef.current.value;
+    const passwordEntered = passwordRef.current.value;
+
+    setLoading(true);
+
+    let url = isLogin
+      ? `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`
+      : `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: emailEntered,
+        password: passwordEntered,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        setLoading(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "Authentication failed";
+            if (data && data.error && data.error.message) {
+              errorMessage = data.error.message;
+            }
+            throw new Error(errorMessage);
+          });
         }
-    }
-    return (<section>
-        <form onSubmit={submitHandler} className={styles.form}>
-            <h1>{isLogin?'Login':'Sign Up'}</h1>
-            <div>
-                <label htmlFor="email">Email: </label>
-                <input type="email" id="email" ref={emailRef} required />
-            </div>
-            <div>
-                <label htmlFor="password">Password: </label>
-                <input type="password" id="password" ref={passwordRef} required />
-            </div>
-            <div>
-                {!isLoading && <button type="submit" onClick={switchAuthHandler}>{isLogin ? 'Login':'Create Account'}</button>}
-                {isLoading && <p>Loading...</p>}
-            </div>
-        </form>
-    </section>)
-}
+      })
+      .then((data) => {
+        authCtx.login(data.idToken)
+        alert('Authentication successful!');
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
+  return (
+    <section>
+      <form onSubmit={submitHandler} className={styles.form}>
+        <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+        <div>
+          <label htmlFor="email">Email: </label>
+          <input type="email" id="email" ref={emailRef} required />
+        </div>
+        <div>
+          <label htmlFor="password">Password: </label>
+          <input type="password" id="password" ref={passwordRef} required />
+        </div>
+        <div>
+          {!isLoading && (
+            <>
+              <button type="submit">{isLogin ? "Login" : "Create Account"}</button>
+              <button
+                type="button"
+                onClick={switchAuthHandler}
+                style={{ marginLeft: "10px" }}
+              >
+                {isLogin ? "Create new account" : "Login with existing account"}
+              </button>
+            </>
+          )}
+          {isLoading && <p>Loading...</p>}
+        </div>
+      </form>
+    </section>
+  );
+};

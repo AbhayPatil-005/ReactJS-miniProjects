@@ -11,7 +11,7 @@ import LoginForm from "./components/auth/LoginForm";
 function App() {
     return(
       <>
-      
+
         <Cart/>
         <Switch>
           <Route path='/login' exact>
