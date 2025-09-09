@@ -7,6 +7,7 @@ import { Store } from "./components/pages/Store";
 import ProductDetail from "./components/cards/ProductDetail";
 import { Cart } from "./components/cart/Cart";
 import LoginForm from "./components/auth/LoginForm";
+import Profile from "./components/auth/ProfileForm";
 
 function App() {
     return(
@@ -37,6 +38,11 @@ function App() {
           <Route path='/store/:id'>
           <ProductDetail/>
           </Route>
+
+          <Route path="/profile">
+          <Profile/>
+          </Route>
+
         </Switch>
       </>
     )

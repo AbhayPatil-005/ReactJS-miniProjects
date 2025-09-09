@@ -35,7 +35,12 @@ const NavBar = () => {
 
                         <NavLink to='/contact-us' activeClassName="fw-bold" className="text-white text-decoration-none" exact>
                         <span>Contact Us</span>
-                        </NavLink></>}
+                        </NavLink>
+
+                        <NavLink to="/profile" className="text-white text-decoration-none ">
+                          Profile
+                        </NavLink>
+                        </>}
                     </Nav >
                     <div className=" text-end mt-2 mt-lg-0">
                       {!isLoggedIn &&
