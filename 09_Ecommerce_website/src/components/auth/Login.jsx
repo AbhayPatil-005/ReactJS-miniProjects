@@ -14,7 +14,7 @@ export const Login = () => {
  
   const emailRef = useRef();
   const passwordRef = useRef();
-
+  
   const switchAuthHandler = () => {
     setIsLogin((prev) => !prev);
   };
@@ -24,7 +24,8 @@ export const Login = () => {
 
     const emailEntered = emailRef.current.value;
     const passwordEntered = passwordRef.current.value;
-
+    console.log(passwordEntered)
+    console.log(emailEntered)
     setLoading(true);
 
     let url = isLogin
@@ -62,6 +63,7 @@ export const Login = () => {
       })
       .catch((err) => {
         alert(err.message);
+        console.log(err);
       });
   };
 

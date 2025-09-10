@@ -2,6 +2,8 @@ import { Form, Button, Col, Row, Container } from "react-bootstrap";
 import { useRef, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
+import NavBar from "../navBar/NavBar";  
+
 
 const ProfileForm = () => {
   const newPasswordInputRef = useRef();
@@ -31,6 +33,7 @@ const ProfileForm = () => {
       );console.log(response)
 
       const data = await response.json();
+      authCtx.login(data.idToken);
       console.log(data)
 
       if (!response.ok) {
@@ -38,8 +41,8 @@ const ProfileForm = () => {
       }
       console.log(enteredPassword)
       alert("Password updated successfully! Please log in again with your new password.");
-      // authCtx.logout();  
-      // history.replace("/login");
+      authCtx.logout();  
+      history.replace("/login");
 
       newPasswordInputRef.current.value = "";
     } catch (err) {
@@ -47,7 +50,8 @@ const ProfileForm = () => {
     }
   };
 
-  return (
+  return (<>
+  <NavBar/>
     <Container className="mt-5">
       <Row className="justify-content-center">
         <Col xs={12} md={6} lg={4}>
@@ -72,7 +76,7 @@ const ProfileForm = () => {
         </Col>
       </Row>
     </Container>
-  );
+  </>);
 };
 
 export default ProfileForm;
