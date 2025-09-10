@@ -1,6 +1,7 @@
 import { useState, useContext,useRef } from "react";
 import styles from './Login.module.css';
 import {AuthContext} from '../../context/AuthContext';
+import { useHistory } from "react-router-dom";
 
 export const Login = () => {
   const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
@@ -9,6 +10,7 @@ export const Login = () => {
   const [isLoading, setLoading] = useState(false);
 
   const authCtx = useContext(AuthContext);
+  const history = useHistory();
  
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -39,8 +41,7 @@ export const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => {
+    }).then((res) => {
         setLoading(false);
         if (res.ok) {
           return res.json();
@@ -50,12 +51,13 @@ export const Login = () => {
             if (data && data.error && data.error.message) {
               errorMessage = data.error.message;
             }
-            throw new Error(errorMessage);
+            throw new Error(data.error.message || "Authentication failed!");
           });
         }
       })
       .then((data) => {
         authCtx.login(data.idToken)
+        history.replace('/')
         alert('Authentication successful!');
       })
       .catch((err) => {

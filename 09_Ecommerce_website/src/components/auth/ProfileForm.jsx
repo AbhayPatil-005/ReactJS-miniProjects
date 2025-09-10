@@ -1,16 +1,19 @@
 import { Form, Button, Col, Row, Container } from "react-bootstrap";
 import { useRef, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { useHistory } from "react-router-dom";
 
 const ProfileForm = () => {
   const newPasswordInputRef = useRef();
   const authCtx = useContext(AuthContext);
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const enteredPassword = newPasswordInputRef.current.value;
-
+    console.log(enteredPassword)
+   
     try {
       const response = await fetch(
         `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${import.meta.env.VITE_FIREBASE_API_KEY}`,
@@ -18,26 +21,29 @@ const ProfileForm = () => {
           method: "POST",
           body: JSON.stringify({
             idToken: authCtx.token,   
-            password: enteredPassword, 
-            returnSecureToken: false,
+            newPassword: enteredPassword, 
+            returnSecureToken: true,
           }),
           headers: {
             "Content-Type": "application/json",
           },
         }
-      );
+      );console.log(response)
 
       const data = await response.json();
+      console.log(data)
 
       if (!response.ok) {
         throw new Error(data.error.message || "Password update failed!");
       }
-
-      console.log("Password updated successfully!", data);
+      console.log(enteredPassword)
+      alert("Password updated successfully! Please log in again with your new password.");
+      // authCtx.logout();  
+      // history.replace("/login");
 
       newPasswordInputRef.current.value = "";
     } catch (err) {
-      console.error(err.message);
+      alert(`Error: ${err.message}`);
     }
   };
 

@@ -4,14 +4,18 @@ import { Container } from "react-bootstrap";
 import { CartContext } from "../../context/CartContext";
 import {AuthContext} from "../../context/AuthContext";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 const NavBar = () => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
-  const logout = authCtx.logout;
+  const history = useHistory();
 
   const {cartOpen, cartList} = useContext(CartContext);
+  const logoutHandler = () => {
+    authCtx.logout();
+    history.replace("/login"); 
+  };
 
   return (
     <Navbar expand="lg" bg="dark" variant="dark">
@@ -50,7 +54,7 @@ const NavBar = () => {
                         }
                     {isLoggedIn && <>
                     <Button variant="light" className="fw-semibold ms-auto" onClick={cartOpen}>Cart ({cartList.length})</Button>
-                    <Button variant="danger" className="m-2 " onClick={logout}>Logout</Button>
+                    <Button variant="danger" className="m-2 " onClick={logoutHandler}>Logout</Button>
                     </>}
                     </div>
                 </Navbar.Collapse>
