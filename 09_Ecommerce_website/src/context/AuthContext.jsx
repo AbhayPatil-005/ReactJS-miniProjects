@@ -14,16 +14,19 @@ const AuthContextProvider=({children})=>{
     const [token, setToken]= useState(initialToken);
     const userIsLoggedIn = !!token;
 
+    let logoutTimer ;
     const loginHandler =(token)=>{
         setToken(token);
         localStorage.setItem("token", token);
+        if(logoutTimer)clearTimeout(logoutTimer)
 
-        setTimeout(logoutHandler,5*60*1000);
+        logoutTimer = setTimeout(logoutHandler,5*60*1000);
     };
 
     const logoutHandler=()=>{
         setToken(null);
         localStorage.removeItem("token");
+        if (logoutTimer)clearTimeout(logoutTimer);
     };
     const contextValue = {
         token: token,
