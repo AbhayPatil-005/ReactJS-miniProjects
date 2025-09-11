@@ -33,10 +33,6 @@ const NavBar = () => {
                         <span>Store</span>
                         </NavLink>
 
-                        <NavLink to="/about" activeClassName="fw-bold" className="text-white text-decoration-none" exact
-                        ><span>About</span>
-                        </NavLink>
-
                         <NavLink to='/contact-us' activeClassName="fw-bold" className="text-white text-decoration-none" exact>
                         <span>Contact Us</span>
                         </NavLink>
@@ -45,6 +41,11 @@ const NavBar = () => {
                           Profile
                         </NavLink>
                         </>}
+
+                        <NavLink to="/about" activeClassName="fw-bold" className="text-white text-decoration-none" exact
+                        ><span>About</span>
+                        </NavLink>
+                        
                     </Nav >
                     <div className=" text-end mt-2 mt-lg-0">
                       {!isLoggedIn &&

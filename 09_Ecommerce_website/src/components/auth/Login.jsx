@@ -52,13 +52,13 @@ export const Login = () => {
             if (data && data.error && data.error.message) {
               errorMessage = data.error.message;
             }
-            throw new Error(data.error.message || "Authentication failed!");
+            throw new Error( "Authentication failed!");
           });
         }
       })
       .then((data) => {
         authCtx.login(data.idToken)
-        history.replace('/')
+        history.replace('/store')
         alert('Authentication successful!');
       })
       .catch((err) => {

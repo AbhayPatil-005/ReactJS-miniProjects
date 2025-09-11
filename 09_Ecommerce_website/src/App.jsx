@@ -27,10 +27,8 @@ function App() {
             <Home/>
           </Route>
 
-          <Route path='/about'>
-              <About/>
-          </Route>
-
+          
+          {authCtx.isLoggedIn &&<>
           <Route path='/store' exact>
             <Store/>
           </Route>
@@ -41,6 +39,10 @@ function App() {
 
           <Route path='/store/:id'>
           <ProductDetail/>
+          </Route></>}
+
+          <Route path='/about'>
+              <About/>
           </Route>
 
           <Route path="/profile">
