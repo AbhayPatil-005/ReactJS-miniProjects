@@ -3,9 +3,11 @@ import { Button } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { AuthContext } from "../../context/AuthContext";
 import { NavLink } from "react-router-dom";
 
 const Cards = () => {
+    const authCtx = useContext(AuthContext);
     const {cartList, addItemToCart, cartOpen} = useContext(CartContext)
     const productsArr = [
         { 
@@ -52,7 +54,7 @@ const Cards = () => {
                             ${product.price}
                             </Card.Text>
                             
-                            <Button variant="primary" className="ms-auto" onClick={()=>addItemToCart(product)}>Add to cart</Button>
+                            <Button variant="primary" className="ms-auto" onClick={()=>addItemToCart(product, authCtx.email)}>Add to cart</Button>
                         </div>
                     </Card.Body>
                     

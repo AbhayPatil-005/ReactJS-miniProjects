@@ -1,11 +1,13 @@
 import { CartContext } from "../../context/CartContext";
-import { useContext, useState, useEffect } from "react";
-import { Offcanvas, ListGroup, Button, ListGroupItem } from "react-bootstrap";
+import { useContext} from "react";
+import { Offcanvas, ListGroup, Button} from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
+
 
 export const Cart=()=>{
     const {cartClose, isCartOpen, 
         removeItemToCart, cartList} = useContext(CartContext);
- 
+        const authCtx = useContext(AuthContext);
     const cartElements = [{
                             title: 'Colors',
                             price: 100,
@@ -45,6 +47,7 @@ export const Cart=()=>{
         </Offcanvas.Header>
         <Offcanvas.Body>
             <ListGroup variant="flush">
+                
                 {cartList.map((product, index)=>(
                 <ListGroup.Item key={index+1} className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
@@ -63,7 +66,7 @@ export const Cart=()=>{
                     
                 <div className="d-flex align-items-center">
                         <span className="border rounded px-2 py-1 me-3 bg-light">Qty: {product.quantity}</span>
-                        <Button variant="danger" size="sm" onClick={()=>removeItemToCart(product)}>Remove</Button>
+                        <Button variant="danger" size="sm" onClick={()=>removeItemToCart(product, authCtx.email)}>Remove</Button>
 
                 </div>
                 </ListGroup.Item>))}

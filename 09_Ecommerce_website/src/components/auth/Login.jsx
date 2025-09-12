@@ -1,6 +1,7 @@
 import { useState, useContext,useRef } from "react";
 import styles from './Login.module.css';
 import {AuthContext} from '../../context/AuthContext';
+import { CartContext } from "../../context/CartContext";
 import { useHistory } from "react-router-dom";
 
 export const Login = () => {
@@ -10,6 +11,7 @@ export const Login = () => {
   const [isLoading, setLoading] = useState(false);
 
   const authCtx = useContext(AuthContext);
+  const cartCtx = useContext(CartContext);  
   const history = useHistory();
  
   const emailRef = useRef();
@@ -57,8 +59,9 @@ export const Login = () => {
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken)
+        authCtx.login(data.idToken, emailEntered)
         history.replace('/store')
+        cartCtx.loadCart(emailEntered)
         alert('Authentication successful!');
       })
       .catch((err) => {

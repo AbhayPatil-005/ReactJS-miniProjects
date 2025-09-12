@@ -19,8 +19,7 @@ function App() {
         <Cart/>
         <Switch>
           <Route path='/login' exact>
-          {!authCtx.isLoggedIn && <LoginForm />}
-          {authCtx.isLoggedIn && <Redirect to="/profile" />}
+          {!authCtx.isLoggedIn ? <LoginForm /> : <Redirect to="/profile" />}
           </Route>
 
           <Route path='/' exact>
@@ -28,26 +27,24 @@ function App() {
           </Route>
 
           
-          {authCtx.isLoggedIn &&<>
-          <Route path='/store' exact>
-            <Store/>
-          </Route>
+         <Route path='/store' exact>
+          {authCtx.isLoggedIn ? <Store/> : <Redirect to="/login" />}
+        </Route>
 
-          <Route path='/contact-us'>
-            <ContactUs/>
-          </Route>
+        <Route path='/contact-us'>
+          {authCtx.isLoggedIn ? <ContactUs/> : <Redirect to="/login" />}
+        </Route>
 
-          <Route path='/store/:id'>
-          <ProductDetail/>
-          </Route></>}
+        <Route path='/store/:id'>
+          {authCtx.isLoggedIn ? <ProductDetail/> : <Redirect to="/login" />}
+        </Route>
 
           <Route path='/about'>
               <About/>
           </Route>
 
           <Route path="/profile">
-          {authCtx.isLoggedIn && <ProfileForm />}
-          {!authCtx.isLoggedIn && <Redirect to="/login" />}
+          {authCtx.isLoggedIn ? <ProfileForm/> : <Redirect to="/login"/> }
           </Route>
 
           <Route path='*'>
