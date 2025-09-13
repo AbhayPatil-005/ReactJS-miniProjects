@@ -37,9 +37,6 @@ const NavBar = () => {
                         <span>Contact Us</span>
                         </NavLink>
 
-                        <NavLink to="/profile" className="text-white text-decoration-none ">
-                          Profile
-                        </NavLink>
                         </>}
 
                         <NavLink to="/about" activeClassName="fw-bold" className="text-white text-decoration-none" exact

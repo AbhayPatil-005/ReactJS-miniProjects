@@ -7,7 +7,7 @@ import { Store } from "./components/pages/Store";
 import ProductDetail from "./components/cards/ProductDetail";
 import { Cart } from "./components/cart/Cart";
 import LoginForm from "./components/auth/LoginForm";
-import ProfileForm from "./components/auth/ProfileForm";
+
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
@@ -41,10 +41,6 @@ function App() {
 
           <Route path='/about'>
               <About/>
-          </Route>
-
-          <Route path="/profile">
-          {authCtx.isLoggedIn ? <ProfileForm/> : <Redirect to="/login"/> }
           </Route>
 
           <Route path='*'>
