@@ -1,10 +1,10 @@
 import NavBar from "../navBar/NavBar";
 import Header from "../header/Header";
 import Cards from "../cards/Cards";
-import { Cart } from "../cart/Cart";
+import Cart  from "../cart/Cart";
 import Footer from "../footer/Footer";
 
-export const Store=()=>{
+const Store=()=>{
     return(<>
         <NavBar/>    
         <Header/>
@@ -13,3 +13,4 @@ export const Store=()=>{
         <Footer/>
     </>)
 }
+export default Store;

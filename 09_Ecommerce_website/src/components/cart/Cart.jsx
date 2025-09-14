@@ -4,7 +4,7 @@ import { Offcanvas, ListGroup, Button} from "react-bootstrap";
 import { AuthContext } from "../../context/AuthContext";
 
 
-export const Cart=()=>{
+const Cart=()=>{
     const {cartClose, isCartOpen, 
         removeItemToCart, cartList} = useContext(CartContext);
         const authCtx = useContext(AuthContext);
@@ -81,3 +81,4 @@ export const Cart=()=>{
     
     )
 }
+export default Cart;

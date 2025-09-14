@@ -2,7 +2,7 @@ import NavBar from "../navBar/NavBar";
 import { Container, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 
-export const ContactUs=()=>{
+const ContactUs=()=>{
     const [formData, setFormData] = useState({
         name:"",
         email:"",
@@ -86,3 +86,5 @@ export const ContactUs=()=>{
         </>
     )
 }
+
+export default ContactUs;

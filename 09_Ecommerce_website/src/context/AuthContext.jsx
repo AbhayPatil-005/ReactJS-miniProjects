@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { useState } from "react";
 
 
-const AuthContext = createContext({
+export const AuthContext = createContext({
   token:'',
   email:'',
   isLoggedIn:false,
@@ -51,4 +51,4 @@ const AuthContextProvider=({children})=>{
     );
 };
 
-export {AuthContextProvider, AuthContext};
+export default AuthContextProvider;
