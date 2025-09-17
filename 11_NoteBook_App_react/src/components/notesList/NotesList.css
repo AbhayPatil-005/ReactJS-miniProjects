@@ -1,0 +1,76 @@
+.noteSearch{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+.noteSearch h1{
+    padding: 10px;
+    background-color: antiquewhite;
+    width: 97%;
+    text-align: center;
+}
+.noteSearch input{
+    border: 1px solid rgb(139, 241, 250);
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgb(228, 254, 255);
+    text-align: center;
+}
+.open-btn{
+    border-radius: 10px;
+    border: 1px solid green;
+    padding: 7px;
+    background-color: rgb(213, 255, 213);
+    color: green;
+    margin-bottom: 10px;
+}
+
+.renderList{
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 95%;
+    padding: 10px;
+}
+li{
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid black;
+
+    display:flex;
+    flex-direction: column;
+}
+li p{
+    margin :10px;
+    font-style:italic ;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+.renderList button{
+    margin-left: auto;
+    padding: 10px;
+    border-radius: 10px;
+    border:none;
+    background-color: rgb(255, 217, 217);
+    color:red;
+}
+
+.renderList h3{
+    background-color: aliceblue;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.noNotes{
+    color: tomato;
+    font-family:monospace;
+    padding: 10px;
+}
