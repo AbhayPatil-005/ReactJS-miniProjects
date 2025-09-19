@@ -1,0 +1,39 @@
+.signup-form{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    width:250px;
+    background-color: rgb(255, 250, 244);
+    
+}
+
+.inputs-div{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    margin:10px;
+    
+}
+label{
+    display: block;
+    text-align: start;
+    margin-bottom:auto;
+}
+.inputs-div div{
+    margin-bottom: 10px;
+}
+h3{
+    width: 100%;
+    padding:10px 0 10px 0;
+    margin: 0;
+    background-color: rgb(149, 46, 149);
+    color: white;
+}
+
+button{
+    margin: auto;
+    background-color:rgb(63, 166, 63);
+    color: white;
+}
