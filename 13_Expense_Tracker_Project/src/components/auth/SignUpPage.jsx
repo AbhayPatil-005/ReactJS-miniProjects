@@ -1,6 +1,6 @@
 import './SignUpPage.css';
 import { useState } from 'react';
-
+import { useHistory } from 'react-router-dom';
 
 const SignUpPage=()=>{
     const API_KEY = import.meta.env.VITE_FIREBASE_AUTH_API_KEY;
@@ -8,7 +8,8 @@ const SignUpPage=()=>{
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError]=useState('');
-
+    const history = useHistory();
+ 
     const formHandle=async(e)=>{
         e.preventDefault()
 
@@ -28,9 +29,14 @@ const SignUpPage=()=>{
 
             })
             const data = await response.json()
-            console.log('The user has Successfully signed up: ',data.email)
+            if(!response.ok){
+                throw new error(data.error.message)
+            }
+            history.replace("/login");
+            
         }catch(err){
             console.error("Failed to post auth details: ",err)
+            
         }
         
         setError("");

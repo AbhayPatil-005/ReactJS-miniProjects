@@ -1,12 +1,26 @@
-import { useState } from 'react'
+import { useState, createContext, useContext } from 'react'
 import SignUpPage from './components/auth/SignUpPage';
 import './App.css'
+import LoginPage from './components/auth/LoginPage';
+import HomePage from './components/dashboard/HomePage';
+import { Route, Switch, Redirect  } from 'react-router-dom';
+import { AuthContext } from './authContext/AuthContextProvider';
+
 
 function App() {
-
+  const authCtx = useContext(AuthContext);
+  
   return (
     <> 
-    <SignUpPage />
+      <Switch>
+        <Route path='/login' exact > 
+          {!authCtx.isLoggedIn ? <LoginPage/>:<Redirect to='/' />}
+        </Route>
+        <Route path='/sign-up' component={SignUpPage}/>
+        <Route path='/' exact>
+          {authCtx.isLoggedIn ? <HomePage/>:<Redirect to='/login' />}        
+        </Route>
+      </Switch>
     </>
   )
 }
