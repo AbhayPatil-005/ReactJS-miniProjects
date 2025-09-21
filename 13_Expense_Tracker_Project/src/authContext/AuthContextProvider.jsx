@@ -6,8 +6,10 @@
         token:'',
         email:'',
         isLoggedIn:false,
+        emailVerified: false,
         login:(token)=>{},
-        logout:()=>{}
+        logout:()=>{},
+        setEmailVerified:(status)=>{},
     });
 
     const AuthContextProvider = ({children})=>{
@@ -16,8 +18,10 @@
 
         const [token, setToken] = useState(initialToken);
         const [email, setEmail] = useState(initialEmail);
+        const [emailVerified, setEmailVerified] = useState( false);
+
         const userIsLoggedIn = !!token;
-        console.log(userIsLoggedIn)
+        console.log("userIsLoggedIn: ",userIsLoggedIn)
 
         const history = useHistory();
 
@@ -33,6 +37,7 @@
         const logoutHandler=()=>{
             setToken(null);
             setEmail(null);
+            setEmailVerified(false);
             localStorage.removeItem("token");
             localStorage.removeItem("email");
         }
@@ -40,9 +45,11 @@
         const contextValue = {
             token,
             email,
+            emailVerified,
             isLoggedIn:userIsLoggedIn,
             login:loginHandler,
             logout:logoutHandler,
+            setEmailVerified,
         }
 
         return <AuthContext.Provider value={contextValue}>

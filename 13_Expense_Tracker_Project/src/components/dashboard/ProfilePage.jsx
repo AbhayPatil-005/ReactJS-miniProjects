@@ -1,9 +1,11 @@
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../authContext/AuthContextProvider";
+import { useHistory } from "react-router-dom";
 
 
 const CompleteProfilePage=()=>{
     const authCtx =  useContext(AuthContext);
+    const history = useHistory();
     const [fullName, setFullName] = useState("");
     const [photoUrl, setPhotoUrl] = useState("");
     const [loading, setLoading] = useState(false);
@@ -21,10 +23,15 @@ const CompleteProfilePage=()=>{
                      );
 
                      const data = await response.json();
-                     const users = data.users[0]
-                    console.log("Fetched data from database\nFilled inputs: User's edited details")
-                     if (users.displayName) setFullName(users.displayName);
-                     if (users.photoUrl) setPhotoUrl(users.photoUrl);
+                     
+                    
+                     if (response.ok && data.users && data.users.length>0) {
+                        const users = data.users[0];
+                        setFullName(users.displayName || "");
+                        setPhotoUrl(users.photoUrl || "");
+                        authCtx.setEmailVerified(users.emailVerified);
+                        console.log(`email verified:${users.emailVerified} \n Fetched data from database` )
+                     }
                  } catch (err) {
                      console.error("Failed to fetch profile:", err);
                  } finally {
@@ -54,6 +61,7 @@ const CompleteProfilePage=()=>{
                 throw new Error(data.error.message || "Profile update failed");
             };
             alert("Profile updated successfully!");
+            history.replace('/');
             console.log("Name:", data.displayName)
 
         }catch(err){
