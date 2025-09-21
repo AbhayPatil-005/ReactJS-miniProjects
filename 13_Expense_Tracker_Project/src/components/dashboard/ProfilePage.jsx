@@ -61,6 +61,7 @@ const CompleteProfilePage=()=>{
                 throw new Error(data.error.message || "Profile update failed");
             };
             alert("Profile updated successfully!");
+            authCtx.setProfileComplete(true);
             history.replace('/');
             console.log("Name:", data.displayName)
 

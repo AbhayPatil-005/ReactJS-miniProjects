@@ -7,9 +7,11 @@
         email:'',
         isLoggedIn:false,
         emailVerified: false,
+        profileComplete:false,
         login:(token)=>{},
         logout:()=>{},
         setEmailVerified:(status)=>{},
+        setProfileComplete:(status)=>{},
     });
 
     const AuthContextProvider = ({children})=>{
@@ -19,6 +21,7 @@
         const [token, setToken] = useState(initialToken);
         const [email, setEmail] = useState(initialEmail);
         const [emailVerified, setEmailVerified] = useState( false);
+        const [profileComplete, setProfileComplete] = useState(false);
 
         const userIsLoggedIn = !!token;
         console.log("userIsLoggedIn: ",userIsLoggedIn)
@@ -46,10 +49,12 @@
             token,
             email,
             emailVerified,
+            profileComplete,
             isLoggedIn:userIsLoggedIn,
             login:loginHandler,
             logout:logoutHandler,
             setEmailVerified,
+            setProfileComplete,
         }
 
         return <AuthContext.Provider value={contextValue}>

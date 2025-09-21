@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import './LoginPage.css';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../authContext/AuthContextProvider';
+import NavBar from '../dashboard/NavBar';
 
 
 const LoginPage=()=>{
@@ -31,21 +32,26 @@ const LoginPage=()=>{
             authCtx.login(data.idToken, data.email);
             
         }catch(err){
-            throw new Error(err);
+            alert(err)
+            throw new Error(err.error);
         }
 
     }
     return <>
-    <form onSubmit={formLoginHandle}>
-        <div>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" value={email}  onChange={(e)=>setEmail(e.target.value)} required/>
+    <NavBar />
+    <form onSubmit={formLoginHandle} className='login-form'>
+        <h2>Login</h2>
+        <div className='login-input'>
+            <div>
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" value={email}  onChange={(e)=>setEmail(e.target.value)} required/>
+            </div>
+            <div>
+                <label htmlFor="password">Password</label>
+                <input type="password" id="password" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
+            </div>
+            <button type='submit'>Login</button>
         </div>
-        <div>
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
-        </div>
-        <button type='submit'>Login</button>
     </form>
     <div className='sign-up-block'>Don't have an account? <NavLink to='/sign-up'>signup</NavLink>?</div>
     </>
