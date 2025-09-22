@@ -23,12 +23,13 @@ const CompleteProfilePage=()=>{
                      );
 
                      const data = await response.json();
-                     
-                    
                      if (response.ok && data.users && data.users.length>0) {
                         const users = data.users[0];
+                        authCtx.setUserId(users.localId); 
+
                         setFullName(users.displayName || "");
                         setPhotoUrl(users.photoUrl || "");
+                        
                         authCtx.setEmailVerified(users.emailVerified);
                         console.log(`email verified:${users.emailVerified} \n Fetched data from database` )
                      }

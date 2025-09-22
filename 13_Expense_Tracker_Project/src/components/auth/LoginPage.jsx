@@ -26,10 +26,11 @@ const LoginPage=()=>{
                 }),
             })
             const data = await response.json();
+            
             if(!response.ok){
                 throw new Error(data.error.message || "Authentication failed"); 
             }       
-
+            authCtx.setUserId(data.localId);
             authCtx.login(data.idToken, data.email);
             
         }catch(err){

@@ -8,16 +8,19 @@
         isLoggedIn:false,
         emailVerified: false,
         profileComplete:false,
+        userId:'',
         login:(token)=>{},
         logout:()=>{},
         setEmailVerified:(status)=>{},
         setProfileComplete:(status)=>{},
+        setUserId:(id)=>{},
     });
 
     const AuthContextProvider = ({children})=>{
         const initialToken = localStorage.getItem("token");
         const initialEmail = localStorage.getItem("email");
-
+        
+        const [userId, setUserId] = useState(null);
         const [token, setToken] = useState(initialToken);
         const [email, setEmail] = useState(initialEmail);
         const [emailVerified, setEmailVerified] = useState( false);
@@ -50,11 +53,13 @@
             email,
             emailVerified,
             profileComplete,
+            userId,
             isLoggedIn:userIsLoggedIn,
             login:loginHandler,
             logout:logoutHandler,
             setEmailVerified,
             setProfileComplete,
+            setUserId,
         }
 
         return <AuthContext.Provider value={contextValue}>
