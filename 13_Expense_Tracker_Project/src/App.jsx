@@ -7,6 +7,7 @@ import { Route, Switch, Redirect  } from 'react-router-dom';
 import { AuthContext } from './authContext/AuthContextProvider';
 import CompleteProfilePage from './components/dashboard/ProfilePage';
 import ForgotPassword from './components/auth/ForgotPassword';
+import ExpenseTracker from './components/dashboard/ExpenseTracker';
 
 
 function App() {
@@ -28,9 +29,13 @@ function App() {
         <Route path="/complete-profile">
           {authCtx.isLoggedIn ? <CompleteProfilePage /> : <Redirect to="/login" />}
         </Route>
-        
+
         <Route path='/forgot-password'>
           <ForgotPassword/>
+        </Route>
+
+        <Route path='/expenses' exact>
+          {authCtx.isLoggedIn ? <ExpenseTracker/>:<Redirect to='/login' />}        
         </Route>
       </Switch>
     </>
