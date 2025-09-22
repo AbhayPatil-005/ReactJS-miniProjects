@@ -6,6 +6,7 @@ import HomePage from './components/dashboard/HomePage';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import { AuthContext } from './authContext/AuthContextProvider';
 import CompleteProfilePage from './components/dashboard/ProfilePage';
+import ForgotPassword from './components/auth/ForgotPassword';
 
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
           {authCtx.isLoggedIn ? <CompleteProfilePage /> : <Redirect to="/login" />}
         </Route>
         
+        <Route path='/forgot-password'>
+          <ForgotPassword/>
+        </Route>
       </Switch>
     </>
   )

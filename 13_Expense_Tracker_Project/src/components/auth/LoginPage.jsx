@@ -3,13 +3,14 @@ import './LoginPage.css';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../authContext/AuthContextProvider';
 import NavBar from '../dashboard/NavBar';
+import { useHistory } from 'react-router-dom';
 
 
 const LoginPage=()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-        
+    const history = useHistory();
     const authCtx = useContext(AuthContext);
 
     const formLoginHandle= async(e)=>{
@@ -53,7 +54,13 @@ const LoginPage=()=>{
             <button type='submit'>Login</button>
         </div>
     </form>
-    <div className='sign-up-block'>Don't have an account? <NavLink to='/sign-up'>signup</NavLink>?</div>
+    <div className='sign-up-block'>Don't have an account? <NavLink to='/sign-up'>signup</NavLink>?
+            <p>
+                <button onClick={() => history.push("/forgot-password")}>
+                    Forgot Password?
+                </button>
+            </p>
+    </div>
     </>
 }
 
