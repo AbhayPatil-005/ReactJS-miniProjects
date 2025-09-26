@@ -1,17 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import './LoginPage.css';
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../authContext/AuthContextProvider';
+import {  useState } from 'react';
 import NavBar from '../dashboard/NavBar';
 import { useHistory } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/authSlice';
 
 const LoginPage=()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const history = useHistory();
-    const authCtx = useContext(AuthContext);
+    const dispatch = useDispatch();
 
     const formLoginHandle= async(e)=>{
         e.preventDefault()
@@ -30,9 +30,9 @@ const LoginPage=()=>{
             if(!response.ok){
                 throw new Error(data.error.message || "Authentication failed"); 
             }       
-            authCtx.setUserId(data.localId);
-            authCtx.login(data.idToken, data.email);
-            
+            dispatch(login({ token: data.idToken, userId: data.localId }));
+            history.replace('/');
+
         }catch(err){
             alert(err)
             throw new Error(err.error);

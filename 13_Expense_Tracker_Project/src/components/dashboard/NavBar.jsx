@@ -1,15 +1,15 @@
 import './Navbar.css';
 import { NavLink } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../authContext/AuthContextProvider';
-import { useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/authSlice';
 
-const NavBar=()=>{
-    const authCtx = useContext(AuthContext);
+const NavBar = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
-    const logoutHandler=()=>{
-        authCtx.logout();
-        history.replace('/login') 
+    const logoutHandler = () => {
+        dispatch(logout());
+        history.replace('/login');
     }
     return(
         <>

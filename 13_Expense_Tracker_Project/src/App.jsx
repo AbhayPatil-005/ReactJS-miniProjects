@@ -1,45 +1,45 @@
-import { useState, createContext, useContext } from 'react'
+import { useSelector } from 'react-redux';
 import SignUpPage from './components/auth/SignUpPage';
-import './App.css'
+import './App.css';
 import LoginPage from './components/auth/LoginPage';
 import HomePage from './components/dashboard/HomePage';
-import { Route, Switch, Redirect  } from 'react-router-dom';
-import { AuthContext } from './authContext/AuthContextProvider';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import CompleteProfilePage from './components/dashboard/ProfilePage';
 import ForgotPassword from './components/auth/ForgotPassword';
 import ExpenseTracker from './components/dashboard/ExpenseTracker';
 
 
+
 function App() {
-  const authCtx = useContext(AuthContext);
-  
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
-    <> 
+    <>
       <Switch>
-        <Route path='/login' exact > 
-          {!authCtx.isLoggedIn ? <LoginPage/>:<Redirect to='/' />}
+        <Route path='/login' exact>
+          {!isLoggedIn ? <LoginPage /> : <Redirect to='/' />}
         </Route>
 
         <Route path='/' exact>
-          {authCtx.isLoggedIn ? <HomePage/>:<Redirect to='/login' />}        
+          {isLoggedIn ? <HomePage /> : <Redirect to='/login' />}
         </Route>
 
-        <Route path='/sign-up' component={SignUpPage}/>
+        <Route path='/sign-up' component={SignUpPage} />
 
         <Route path="/complete-profile">
-          {authCtx.isLoggedIn ? <CompleteProfilePage /> : <Redirect to="/login" />}
+          {isLoggedIn ? <CompleteProfilePage /> : <Redirect to="/login" />}
         </Route>
 
         <Route path='/forgot-password'>
-          <ForgotPassword/>
+          <ForgotPassword />
         </Route>
 
         <Route path='/expenses' exact>
-          {authCtx.isLoggedIn ? <ExpenseTracker/>:<Redirect to='/login' />}        
+          {isLoggedIn ? <ExpenseTracker /> : <Redirect to='/login' />}
         </Route>
       </Switch>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
