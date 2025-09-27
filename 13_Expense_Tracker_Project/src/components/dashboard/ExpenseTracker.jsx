@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setExpenses, addExpense, updateExpense, deleteExpense } from '../../store/expensesSlice';
 import NavBar from './NavBar';
+import { ExportCSV } from '../utilityFolder/csvUtility';
 
 
 const ExpenseTracker = () => {
@@ -169,6 +170,7 @@ const ExpenseTracker = () => {
                 {totalExpenses > 10000 && (
                     <button className="premium-btn">Activate Premium</button>
                 )}
+                <ExportCSV/>
             </div>
         </>
     );

@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SignUpPage from './components/auth/SignUpPage';
 import './App.css';
 import LoginPage from './components/auth/LoginPage';
@@ -12,9 +12,11 @@ import ExpenseTracker from './components/dashboard/ExpenseTracker';
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const theme = useSelector((state)=>state.theme.mode);
+
 
   return (
-    <>
+    <div className={theme === 'dark' ? 'dark-theme' : 'light-theme'}>
       <Switch>
         <Route path='/login' exact>
           {!isLoggedIn ? <LoginPage /> : <Redirect to='/' />}
@@ -38,7 +40,7 @@ function App() {
           {isLoggedIn ? <ExpenseTracker /> : <Redirect to='/login' />}
         </Route>
       </Switch>
-    </>
+    </div>
   );
 }
 
