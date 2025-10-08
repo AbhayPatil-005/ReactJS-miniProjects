@@ -120,7 +120,7 @@ const ExpenseTracker = () => {
         <>
             <NavBar />
             <div className='expenses-div'>
-                <h2>Add your Expenses</h2>
+                <h2 className='add-expense-heading'>Add your Expenses</h2>
                 <form onSubmit={handleSubmit} className='expense-form'>
                     <div><label htmlFor="amount">Amount:</label>
                         <input
@@ -153,14 +153,14 @@ const ExpenseTracker = () => {
                             <option value="Other">Other</option>
                         </select>
                     </div>
-                    <button type='submit'>{editingId ? "Update Expense" : "Add Expense"}</button>
+                    <button type='submit' className='submit-btn'>{editingId ? "Update Expense" : "Add Expense"}</button>
                 </form>
 
                 <h3 className='expense-heading'>Your Expenses</h3>
                 {loading && <p>Loading expenses...</p>}
                 <ul>
                     {expenses.map((exp) => (
-                        <li key={exp.id}>
+                        <li key={exp.id} className='li'>
                             <span>₹{exp.amount}</span> - {exp.description} - ({exp.category})<br />
                             <button onClick={() => handleEdit(exp)}>Edit</button>
                             <button onClick={() => handleDelete(exp.id)}>Delete</button>

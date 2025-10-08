@@ -16,15 +16,19 @@ const NavBar = () => {
     }
     
     return(
-        <>
-        <nav>
-            <button onClick={()=> dispatch(toggleTheme())}>switch theme</button>
-            <NavLink to='/'>Home</NavLink>
-            <NavLink to='/expenses'>Expenses</NavLink>
+        <nav className="navbar">
+        <div className="navbar-center">
+            <NavLink to="/" activeClassName="active-link">Home</NavLink>
+            <NavLink to="/expenses" activeClassName="active-link">Expenses</NavLink>
+        </div>
+        <div className="navbar-right">
+            <button onClick={() => dispatch(toggleTheme())}>Switch Theme</button>
+    
             <button onClick={logoutHandler}>Logout</button>
+        </div>
         </nav>
-        </>
-    )
+    );
+
 }
 
 export default NavBar;
