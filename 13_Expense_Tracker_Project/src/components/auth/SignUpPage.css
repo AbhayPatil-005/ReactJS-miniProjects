@@ -4,8 +4,10 @@
     align-items: center;
     flex-direction: column;
     border: 1px solid black;
-    width:250px;
-    background-color: rgb(255, 250, 244);
+    width: 300px;;
+    margin: auto;
+    border-radius: 6px;
+    background-color: #fff9f4;
     
 }
 
@@ -30,6 +32,9 @@ label{
     margin: 0;
     background-color: rgb(149, 46, 149);
     color: white;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
 button{

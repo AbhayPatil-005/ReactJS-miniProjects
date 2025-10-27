@@ -1,21 +1,23 @@
 import { useSelector } from "react-redux";
+import './csvUtility.css';
+
 
 export const ExportCSV = () => {
   const expenses = useSelector((state) => state.expenses.expenses);
 
   if (!expenses || expenses.length === 0) return null;
-
+  // function to download csv file
   const downloadCSV = () => {
     const headers = `"Amount","Description","Category"\n`;
-    const escape = (value) =>
-    `"${String(value).replace(/"/g, '""')}"`;
     
-    const rows = expenses
-      .map((exp, index) => [exp.amount, exp.description, exp.category].map(escape).join(","))
+    // logic to include quotes since csv use quote to mark start and end of a value
+    const escape = (value) =>`"${String(value).replace(/"/g, '""')}"`; 
+    
+    const rows = expenses.map((exp, index) => [exp.amount, exp.description, exp.category].map(escape).join(","))
       .join("\n");
     const csvContent = headers + rows;
 
-
+    // creating a blob file
     const blob = new Blob([csvContent], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
 
@@ -27,7 +29,7 @@ export const ExportCSV = () => {
   };
 
   return (
-    <div>
+    <div className="csv-table">
       <table border="1" cellPadding="8" style={{ width: "100%" }}>
         <thead>
           <tr>
@@ -49,7 +51,7 @@ export const ExportCSV = () => {
         </tbody>
       </table>
 
-      <button onClick={downloadCSV}>Download CSV</button>
+      <button className="export-btn" onClick={downloadCSV}>Download CSV</button>
     </div>
   );
 };

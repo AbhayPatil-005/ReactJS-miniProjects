@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from '../../store/authSlice';
+import './HomePage.css'; 
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const HomePage = () => {
     return (
         <>
             <NavBar />
-            <h1>Welcome to Expense Tracker!</h1>
+            <h1 className="h1-title">Welcome to Expense Tracker!</h1>
             {auth.profileComplete && (
                 <>
                     <p>Your Profile is incomplete!</p>
@@ -60,7 +61,7 @@ const HomePage = () => {
 
             {console.log("is Email verified? -", auth.emailVerified)}
             {!auth.emailVerified && (<div style={{ marginTop: "20px" }}>
-                <button onClick={sendVerificationEmail}>Verify Email</button>
+                <button className="verify-btn" onClick={sendVerificationEmail}>Verify Email</button>
                 {message && <p>{message}</p>}
             </div>)}
         </>

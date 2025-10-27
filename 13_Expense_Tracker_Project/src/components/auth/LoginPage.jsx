@@ -44,10 +44,12 @@ const LoginPage=()=>{
     <form onSubmit={formLoginHandle} className='login-form'>
         <h2>Login</h2>
         <div className='login-input'>
-            <div>
+            {/* Email div */}
+            <div> 
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" value={email}  onChange={(e)=>setEmail(e.target.value)} required/>
             </div>
+            {/* Password div */}
             <div>
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
@@ -57,7 +59,7 @@ const LoginPage=()=>{
     </form>
     <div className='sign-up-block'>Don't have an account? <NavLink to='/sign-up'>signup</NavLink>?
             <p>
-                <button onClick={() => history.push("/forgot-password")}>
+                <button className="forgot-btn" onClick={() => history.push("/forgot-password")}>
                     Forgot Password?
                 </button>
             </p>

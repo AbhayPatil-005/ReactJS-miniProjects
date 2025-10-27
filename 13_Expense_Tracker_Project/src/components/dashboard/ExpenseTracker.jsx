@@ -4,13 +4,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setExpenses, addExpense, updateExpense, deleteExpense } from '../../store/expensesSlice';
 import NavBar from './NavBar';
 import { ExportCSV } from '../utilityFolder/csvUtility';
+import { activatePremium } from '../../store/authSlice';
 
 
 const ExpenseTracker = () => {
     const BASE_URL = import.meta.env.VITE_FIREBASE_DATABASE_URL;
     const dispatch = useDispatch();
+
+    //accessing the store states
     const auth = useSelector((state) => state.auth);
     const expenses = useSelector((state) => state.expenses.expenses);
+    const isPremium = useSelector((state)=>state.auth.isPremium);
 
     const [editingId, setEditingId] = useState(null);
     const [amount, setAmount] = useState("");
@@ -18,6 +22,7 @@ const ExpenseTracker = () => {
     const [category, setCategory] = useState("Food");
     const [loading, setLoading] = useState(false);
 
+    // network calls
     useEffect(() => {
         const fetchExpenses = async () => {
             setLoading(true);
@@ -45,6 +50,7 @@ const ExpenseTracker = () => {
         }
     }, [auth.bearerToken, auth.userId, BASE_URL, dispatch]);
 
+    // event handler function
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -69,7 +75,6 @@ const ExpenseTracker = () => {
             }
 
             const data = await response.json();
-
             if (editingId) {
                 dispatch(updateExpense({ id: editingId, ...expenseData }));
             } else {
@@ -115,12 +120,15 @@ const ExpenseTracker = () => {
 
     // Calculating total expenses
     const totalExpenses = expenses.reduce((sum, exp) => sum + Number(exp.amount), 0);
+    console.log(totalExpenses)
 
     return (
         <>
             <NavBar />
             <div className='expenses-div'>
-                <h2 className='add-expense-heading'>Add your Expenses</h2>
+                <div className='divide'>
+                <div className='col-1'>
+                    <h2 className='add-expense-heading'>Add your Expenses</h2>
                 <form onSubmit={handleSubmit} className='expense-form'>
                     <div><label htmlFor="amount">Amount:</label>
                         <input
@@ -155,22 +163,32 @@ const ExpenseTracker = () => {
                     </div>
                     <button type='submit' className='submit-btn'>{editingId ? "Update Expense" : "Add Expense"}</button>
                 </form>
-
-                <h3 className='expense-heading'>Your Expenses</h3>
+                </div>
+                <div className='col-2'>
+                    <div className='col-h3-div'><h3 className='expense-heading'>Your Expenses</h3></div>
                 {loading && <p>Loading expenses...</p>}
                 <ul>
                     {expenses.map((exp) => (
                         <li key={exp.id} className='li'>
-                            <span>₹{exp.amount}</span> - {exp.description} - ({exp.category})<br />
+                            ₹{exp.amount} - {exp.description} - ({exp.category})<br />
+                            <div className='exp-btns'>
                             <button onClick={() => handleEdit(exp)}>Edit</button>
                             <button onClick={() => handleDelete(exp.id)}>Delete</button>
+                            </div>
                         </li>
                     ))}
                 </ul>
-                {totalExpenses > 10000 && (
-                    <button className="premium-btn">Activate Premium</button>
+                </div>
+                </div>
+                {!isPremium && totalExpenses > 10000 && (
+                    <button 
+                    className="premium-btn" 
+                    onClick={()=>{
+                        dispatch(activatePremium());
+                        
+                    }}>Activate Premium</button>
                 )}
-                <ExportCSV/>
+                {isPremium && <ExportCSV/>}
             </div>
         </>
     );

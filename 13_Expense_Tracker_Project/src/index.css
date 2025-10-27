@@ -1,0 +1,74 @@
+:root {
+  --bg: #f6f8fb;
+  --text: #111;
+  --card-bg: #fafafa;
+  --input-bg: #fff;
+  --border: #ccc;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --button: rgb(0, 138, 60);
+}
+
+.dark-theme {
+  --bg: #172336;
+  --text: #e6eef8;
+  --card-bg: #1a2436;
+  --input-bg: #152033;
+  --border: #7b6464;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  font-family: system-ui, Arial, sans-serif;
+  background-color: #f6f8fb;
+  color: #111;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.light-theme {
+  background-color: #f6f8fb;
+  color: #111;
+}
+
+.dark-theme {
+  background-color: #0f1724;
+  color: #e6eef8;
+}
+
+nav {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1rem 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.dark-theme nav {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.card {
+  background-color: white;
+  color: #111;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-theme .card {
+  background-color: #1a2436;
+  color: #e6eef8;
+}
+
+button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #2563eb;
+}

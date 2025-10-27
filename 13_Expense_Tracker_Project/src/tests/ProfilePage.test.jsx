@@ -7,6 +7,7 @@ import authReducer from '../store/authSlice';
 import expensesReducer from '../store/expensesSlice';
 import { MemoryRouter } from 'react-router-dom';
 
+describe('ProfilePage', () => {
 test('ProfilePage renders update button', () => {
   const store = configureStore({ reducer: { auth: authReducer, expenses: expensesReducer }, preloadedState: { auth: { isLoggedIn: true, bearerToken: 't', userId: 'u' }, expenses: { expenses: [] } } });
   render(
@@ -17,4 +18,5 @@ test('ProfilePage renders update button', () => {
     </Provider>
   );
   expect(screen.getByText(/update/i)).toBeInTheDocument();
+});
 });

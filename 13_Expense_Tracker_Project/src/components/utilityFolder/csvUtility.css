@@ -1,0 +1,11 @@
+.export-btn{
+    margin-top: 10px;
+    width: 150px;
+}
+*{
+    color: var(--text);
+}
+
+.csv-table{
+    padding: 2rem;
+}

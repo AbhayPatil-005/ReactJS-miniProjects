@@ -8,7 +8,7 @@ import expensesReducer from '../store/expensesSlice';
 import { MemoryRouter } from 'react-router-dom';
 
 test('Login form renders email and password inputs', () => {
-  const store = configureStore({ reducer: { auth: authReducer, expenses: expensesReducer } });
+  const store = configureStore({ reducer: { auth: authReducer, expenses: expensesReducer, theme: (s = { mode: 'light' }) => s }, preloadedState: { theme: { mode: 'light' } } });
   render(
     <Provider store={store}>
       <MemoryRouter>
@@ -18,4 +18,19 @@ test('Login form renders email and password inputs', () => {
   );
   expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
   expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+});
+describe('LoginPage', () => {
+  test('renders login inputs', () => {
+  const store = configureStore({ reducer: { auth: authReducer, expenses: expensesReducer, theme: (s = { mode: 'light' }) => s }, preloadedState: { theme: { mode: 'light' } } });
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <LoginPage />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+  });
 });
